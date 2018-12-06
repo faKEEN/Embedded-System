@@ -1,0 +1,14 @@
+set remotetimeout 10000
+shell echo set logging file
+
+tar extended-remote localhost:1234
+load
+
+hbreak test
+commands
+    silent
+    printf "\n\n**** test = %s **** time = %d\n", test_name, time
+    cont
+end
+start
+cont
